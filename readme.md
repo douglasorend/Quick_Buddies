@@ -1,32 +1,36 @@
-[hr]
-[center][color=red][size=16pt][b]QUICK BUDDIES v2.9[/b][/size][/color]
-[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=3900]Link to Mod[/url]
-[/center]
-[hr]
+-------
 
-[color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
-This mod uses the tip/trick written by [url=http://www.simplemachines.org/community/index.php?action=profile;u=51815]ahrasis[/url] in the [url=http://www.simplemachines.org/community/index.php?topic=426109.msg3129052#msg3129052]Add Buddy Button On Post[/url] thread.
+## QUICK BUDDIES v2.9
+
+[**By Dougiefresh**](http://www.simplemachines.org/community/index.php?action=profile;u=253913) -> [Link to Mod](http://custom.simplemachines.org/mods/index.php?mod=3900)
+
+-------
+
+## Introduction
+This mod uses the tip/trick written by [ahrasis](http://www.simplemachines.org/community/index.php?action=profile;u=51815) in the [Add Buddy Button On Post](http://www.simplemachines.org/community/index.php?topic=426109.msg3129052#msg3129052) thread.
 
 This mod makes it easier to add people whom you want to be buddies with.  There are new links to add people as buddies if you aren't buddies with them yet, or to remove buddies already in the list.  You can now buddy up with people in the Post display area, the Message Index pages, the Board Index pages and the Member List.
 
-This mod also alters the [url=http://custom.simplemachines.org/mods/index.php?mod=3894]Followers[/url] mod to allow easier addition of people as your buddies.
+This mod also alters the [Followers](http://custom.simplemachines.org/mods/index.php?mod=3894) mod to allow easier addition of people as your buddies.
 
-[color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
-There are 5 switches under [b]Modifications Settings[/b] that control where in the forum that the Quick Buddies link is shown.  By default, they are turned on.
+## Admin Settings
+There are 5 switches under **Modifications Settings** that control where in the forum that the Quick Buddies link is shown.  By default, they are turned on.
 
-[color=blue][b][size=12pt][u]Related Discussions[/u][/size][/b][/color]
-o [url=http://www.simplemachines.org/community/index.php?topic=426109.msg3129052#msg3129052]Add Buddy Button On Post[/url]
+## Related Discussions
 
-[color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
+- [Add Buddy Button On Post](http://www.simplemachines.org/community/index.php?topic=426109.msg3129052#msg3129052)
+
+## Compatibility Notes
 This mod was tested on SMF 2.0.8, but should work on SMF 2.1 Beta 3 and SMF 2.0 and up.  SMF 2.1 Beta 2 and SMF 1.x is not and will not be supported, so please don't ask.
 
-The [url=http://custom.simplemachines.org/mods/index.php?mod=3894]Followers v1.2+[/url] mod must be installed prior to installing this mod in order to add the ability to the Followers page.
+The [Followers v1.2+](http://custom.simplemachines.org/mods/index.php?mod=3894) mod must be installed prior to installing this mod in order to add the ability to the Followers page.
 
-[color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
-The changelog can be viewed at [url=http://www.xptsp.com/board/free-modifications/quick-buddies/?tab=1]XPtsp.com[/url].
+## Changelog
+The changelog can be viewed at [XPtsp.com](http://www.xptsp.com/board/free-modifications/quick-buddies/?tab=1).
 
-[color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
+## License
 Copyright (c) 2015 - 2018, Douglas Orend
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

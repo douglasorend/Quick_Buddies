@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]QUICK BUDDIES v2.0[/b][/size][/color]
+[center][color=red][size=16pt][b]QUICK BUDDIES v2.1[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=3900]Link to Mod[/url]
 [/center]
 [hr]
@@ -24,6 +24,9 @@ The [url=http://custom.simplemachines.org/mods/index.php?mod=3894]Followers v1.2
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 [quote]
+[b][u]v2.1 - September 17th, 2014[/u][/b]
+o Added Brazilian Portuguese language files.  Thanks, [url=http://www.simplemachines.org/community/index.php?action=profile;u=341618]DSystem[/url]!!!
+
 [b][u]v2.0 - September 14th, 2014[/u][/b]
 o Added options in the [b]Modifications Settings[/b] to control where the quick buddy icon is shown.
 o Added support for the [url=http://custom.simplemachines.org/themes/index.php?lemma=126]Back-n-Black[/url] theme.

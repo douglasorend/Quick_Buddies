@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<name>Quick Buddies</name>
+<id>Dougiefresh:Quick_Buddies</id>
+<version>2.0</version>
+
+<!-------------------------------------------------------------------------->
+<!-- Language file edits                                                  -->
+<!-------------------------------------------------------------------------->
+<file name="$themedir/languages/Modifications.portuguese_brazilian.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['buddy_add'] = "Adicionar '%s' na lista de Amigos";
+$txt['buddy_remove'] = "Remover '%s' da Lista de Amigos";
+
+$txt['qb_on_messageindex'] = 'Adicionar amigos rápidos na MessageIndex';
+$txt['qb_on_boardindex'] = 'Adicionar amigos rápidos na BoardIndex';
+$txt['qb_on_display'] = 'Adicionar amigos rápidos no Post Display';
+$txt['qb_on_memberlist'] = 'Adicionar amigos rápidos em Memberlist';
+$txt['qb_on_followers'] = 'Adicionar amigos rápidos em seguidores';
+
+]]></add>
+	</operation>
+</file>
+</modification>

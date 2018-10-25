@@ -12,6 +12,8 @@
 		<modification>install.xml</modification>
 		<modification>language_english.xml</modification>
 		<modification>language_english-utf8.xml</modification>
+		<modification>language_portuguese_brazilian.xml</modification>
+		<modification>language_portuguese_brazilian-utf8.xml</modification>
 		<require-file name="add_buddy.png" destination="$imagesdir" />
 		<require-file name="del_buddy.png" destination="$imagesdir" />
 	</install>
@@ -19,6 +21,8 @@
 		<modification reverse="true">install.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
 		<modification reverse="true">language_english-utf8.xml</modification>
+		<modification reverse="true">language_portuguese_brazilian.xml</modification>
+		<modification reverse="true">language_portuguese_brazilian-utf8.xml</modification>
 		<remove-file name="$imagesdir/add_buddy.png" />
 		<remove-file name="$imagesdir/del_buddy.png" />
 	</uninstall>

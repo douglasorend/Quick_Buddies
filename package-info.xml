@@ -3,13 +3,13 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<name>Quick Buddies</name>
 	<id>Dougiefresh:Quick_Buddies</id>
-	<version>2.3</version>
+	<version>2.4</version>
 	<type>modification</type>
 
 	<install for="2.0 - 2.0.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>edit_db.php</code>
-		<modification>install.xml</modification>
+		<modification>install_20x.xml</modification>
 		<modification>language_english.xml</modification>
 		<modification>language_english-utf8.xml</modification>
 		<modification>language_portuguese_brazilian.xml</modification>
@@ -18,7 +18,28 @@
 		<require-file name="del_buddy.png" destination="$imagesdir" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
-		<modification reverse="true">install.xml</modification>
+		<modification reverse="true">install_20x.xml</modification>
+		<modification reverse="true">language_english.xml</modification>
+		<modification reverse="true">language_english-utf8.xml</modification>
+		<modification reverse="true">language_portuguese_brazilian.xml</modification>
+		<modification reverse="true">language_portuguese_brazilian-utf8.xml</modification>
+		<remove-file name="$imagesdir/add_buddy.png" />
+		<remove-file name="$imagesdir/del_buddy.png" />
+	</uninstall>
+
+	<install for="2.1 Beta 1">
+		<readme type="file" parsebbc="true">readme.txt</readme>
+		<code>edit_db.php</code>
+		<modification>install_21x.xml</modification>
+		<modification>language_english.xml</modification>
+		<modification>language_english-utf8.xml</modification>
+		<modification>language_portuguese_brazilian.xml</modification>
+		<modification>language_portuguese_brazilian-utf8.xml</modification>
+		<require-file name="add_buddy.png" destination="$imagesdir" />
+		<require-file name="del_buddy.png" destination="$imagesdir" />
+	</install>
+	<uninstall for="2.1 Beta 1">
+		<modification reverse="true">install_21x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
 		<modification reverse="true">language_english-utf8.xml</modification>
 		<modification reverse="true">language_portuguese_brazilian.xml</modification>

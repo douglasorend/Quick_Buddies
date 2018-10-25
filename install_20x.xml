@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<name>Quick Buddies</name>
+<id>Dougiefresh:Quick_Buddies</id>
+<version>2.4</version>
+
+<!---------------------------------------------------------------------------->
+<!-- Addition of settings for Quick Buddies (ManageSettings.php)			-->
+<!---------------------------------------------------------------------------->
+<file name="$sourcedir/ManageSettings.php">
+	<operation>
+		<search position="before"><![CDATA[// Mod authors, add any settings UNDER this line. Include a comma at the end of the line and don't remove this statement!!]]></search>
+		<add><![CDATA[
+		array('check', 'qb_on_messageindex'),
+		array('check', 'qb_on_boardindex'),
+		array('check', 'qb_on_display'),
+		array('check', 'qb_on_memberlist'),
+		array('check', 'qb_on_followers'),]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Addition of column in Member List (Memberlist.php)                   	-->
+<!---------------------------------------------------------------------------->
+<file name="$sourcedir/Memberlist.php">
+	<operation>
+		<search position="before"><![CDATA['posts' => array(
+			'label' => $txt['posts'],
+			'width' => '115',
+			'colspan' => '2',
+			'default_sort_rev' => true,
+		)]]></search>
+		<add><![CDATA[,
+		'is_buddy' => array(
+			'label' => '',
+			'width' => '25',
+		)]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Core functionality change for the entire mod (Subs-Members.php)      	-->
+<!---------------------------------------------------------------------------->
+<file name="$sourcedir/Subs-Members.php">
+	<operation>
+		<search position="replace"><![CDATA[redirectexit('action=profile;u=' . $_REQUEST['u']);]]></search>
+		<add><![CDATA[if (isset($_GET['topic']))
+		redirectexit('topic=' . $_GET['topic'] . ';msg' . $_GET['msg'] . '#msg' . $_GET['msg']);
+	elseif (isset($_GET['board']))
+		redirectexit('board=' . $_GET['board']);
+	elseif (isset($_GET['forum']))
+		redirectexit('action=forum');
+	elseif (isset($_GET['mlist']))
+		redirectexit('action=mlist' . (isset($_REQUEST['sort']) ? ';sort=' . $_REQUEST['sort'] : '') . (isset($_REQUEST['start']) ? ';start=' . $_REQUEST['start'] : ''));
+	elseif (isset($_GET['follow']))
+		redirectexit('action=profile;area=lists;sa=followers;u=' . $user_info['id']);
+	else
+		redirectexit('action=profile;u=' . $_REQUEST['u']);]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Board Index template change (default/BoardIndex.template.php)        	-->
+<!---------------------------------------------------------------------------->
+<file name="$themedir/BoardIndex.template.php">
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $txt, $scripturl, $modSettings]]></search>
+		<add><![CDATA[, $user_info]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<td class="lastpost">';]]></search>
+		<add><![CDATA[<td class="lastpost">';
+
+				// Can they add this member as a buddy?
+				if (!empty($modSettings['qb_on_boardindex']) && $context['user']['is_logged'] && $board['last_post']['member']['id'] <> 0 && $board['last_post']['member']['id'] <> $context['user']['id'])
+				{
+					$is_buddy = in_array( ($id = $board['last_post']['member']['id']), $user_info['buddies']);
+					echo '
+						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $board['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+				}]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Message Index template change (MessageIndex.template.php)            	-->
+<!---------------------------------------------------------------------------->
+<file name="$themedir/MessageIndex.template.php">
+	<operation>
+		<search position="before"><![CDATA[global $context, $settings, $options, $scripturl, $modSettings, $txt]]></search>
+		<add><![CDATA[, $user_info, $board;
+
+	$tmp_board = $board . (isset($_REQUEST['start']) ? '.' . $_REQUEST['start'] : '')]]></add>
+	</operation>
+	<operation>
+		<search position="before"><![CDATA[<a href="', $topic['last_post']['href'], '"><img src="', $settings['images_url'], '/icons/last_post.gif" alt="', $txt['last_post'], '" title="', $txt['last_post'], '" /></a>]]></search>
+		<add><![CDATA[';
+
+			// Can they add this member as a buddy?
+			if (!empty($modSettings['qb_on_messageindex']) && $context['user']['is_logged'] && $topic['last_post']['member']['id'] <> 0 && $topic['last_post']['member']['id'] <> $context['user']['id'])
+			{
+				$is_buddy = in_array( ($id = $topic['last_post']['member']['id']), $user_info['buddies']);
+				echo '
+						<a href="', $scripturl, '?action=buddy;u=', $topic['last_post']['member']['id'], ';board=' . $tmp_board . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $topic['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+			}
+			
+			echo ']]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Post display template change (default/Display.template.php)          	-->
+<!---------------------------------------------------------------------------->
+<file name="$themedir/Display.template.php">
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $txt, $scripturl, $modSettings]]></search>
+		<add><![CDATA[, $user_info;
+		
+	$tmp_topic = 'topic=' . $context['current_topic'];]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<img src="' . $settings['images_url'] . '/im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '.gif" alt="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '" />' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+
+				echo ']]></search>
+		<add><![CDATA[<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<img src="' . $settings['images_url'] . '/im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '.gif" alt="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '" />' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+
+				// Can they add this member as a buddy?
+				if (!empty($modSettings['qb_on_display']) && $context['user']['is_logged'] && $message['member']['id'] <> 0 && $message['member']['id'] <> $context['user']['id'])
+				{
+					$is_buddy = in_array( ($id = $message['member']['id']), $user_info['buddies']);
+					echo '
+										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></li>';
+				}
+				echo ']]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Memberlist template change (Memberlist.template.php)                 	-->
+<!---------------------------------------------------------------------------->
+<file name="$themedir/Memberlist.template.php">
+	<operation>
+		<search position="replace"><![CDATA[global $context, $settings, $options, $scripturl, $txt, $user_info]]></search>
+		<add><![CDATA[global $context, $settings, $options, $scripturl, $txt, $user_info, $modSettings]]></add>
+	</operation>
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $scripturl, $txt]]></search>
+		<add><![CDATA[, $user_info;
+		
+	$tmp_mlist = 'mlist' . (isset($_REQUEST['sort']) ? ';sort=' . $_REQUEST['sort'] : '') . (isset($_REQUEST['start']) ? ';start=' . $_REQUEST['start'] : '');]]></add>
+	</operation>
+	<operation>
+		<search position="after"><![CDATA[echo '
+				</tr>';
+		}
+	}
+	// No members?]]></search>
+		<add><![CDATA[// Can they add this member as a buddy?
+		if (!empty($modSettings['qb_on_memberlist']) && $context['user']['is_logged'] && $member['id'] <> $context['user']['id'])
+		{
+			$is_buddy = in_array( ($id = $member['id']), $user_info['buddies']);
+			echo '
+					<td class="windowbg2"><a href="', $scripturl, '?action=buddy;u=', $member['id'], ';' . $tmp_mlist . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $member['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></td>';
+		}
+		else
+			echo '
+					<td class="windowbg2" />';
+
+		]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Followers v1.2+ template change (Followers.template.php)             	-->
+<!---------------------------------------------------------------------------->
+<file name="$themedir/Followers.template.php" error="skip">
+	<operation>
+		<search position="before"><![CDATA[function template_Followers()
+{
+	global $context, $settings, $options, $scripturl, $modSettings, $txt]]></search>
+		<add><![CDATA[, $user_info;]]></add>
+	</operation>
+	<operation>
+		<search position="after"><![CDATA[</tr>';
+
+	// If they don't have any followers don't list them!]]></search>
+		<add><![CDATA[	<th scope="col" width="25" />
+			</tr>';
+
+	// If they don't have any followers don't list them!]]></add>
+	</operation>
+	<operation>
+		<search position="before"><![CDATA[<td align="center">', $follower['msn']['link'], '</td>]]></search>
+		<add><![CDATA[';
+		if (!empty($modSettings['qb_on_followers']) && $context['user']['is_logged'] && $member['id'] <> $context['user']['id'])
+		{
+			$is_buddy = in_array( ($id = $member['id']), $user_info['buddies']);
+			echo '
+					<td align="center"><a href="', $scripturl, '?action=buddy;u=', $follower['id'], ';follow;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $follower['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></td>';
+		}
+		else
+			echo '
+					<td align="center" />';
+		echo ']]></add>
+	</operation>
+</file>
+			
+<!---------------------------------------------------------------------------->
+<!-- Board Index template change (core/BoardIndex.template.php)        		-->
+<!---------------------------------------------------------------------------->
+<file name="$boarddir/Themes/core/BoardIndex.template.php" error="skip">
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $txt, $scripturl, $modSettings]]></search>
+		<add><![CDATA[, $user_info]]></add>
+	</operation>
+	<operation>
+		<search position="before"><![CDATA[<td', !empty($board['children']) ? ' rowspan="2"' : '', ' class="windowbg2 smalltext lastpost">';]]></search>
+		<add><![CDATA[
+
+				// Can they add this member as a buddy?
+				if ($modSettings['qb_on_boardindex'] && $context['user']['is_logged'] && $board['last_post']['member']['id'] <> 0 && $board['last_post']['member']['id'] <> $context['user']['id'])
+				{
+					$is_buddy = in_array( ($id = $board['last_post']['member']['id']), $user_info['buddies']);
+					echo '
+						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $topic['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+				}]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Post display template change (core/Display.template.php)          		-->
+<!---------------------------------------------------------------------------->
+<file name="$boarddir/Themes/core/Display.template.php" error="skip">
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $txt, $scripturl, $modSettings]]></search>
+		<add><![CDATA[, $user_info;
+		
+	$tmp_topic = 'topic=' . $context['current_topic'];]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<img src="' . $settings['images_url'] . '/im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '.gif" alt="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '" border="0" />' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+
+				echo ']]></search>
+		<add><![CDATA[<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<img src="' . $settings['images_url'] . '/im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '.gif" alt="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '" border="0" />' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+
+				// Can they add this member as a buddy?
+				if ($modSettings['qb_on_display'] && $context['user']['is_logged'] && $message['member']['id'] <> 0 && $message['member']['id'] <> $context['user']['id'])
+				{
+					$is_buddy = in_array( ($id = $message['member']['id']), $user_info['buddies']);
+					echo '
+										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></li>';
+				}
+				echo ']]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Memberlist template change (core/Memberlist.template.php)              -->
+<!---------------------------------------------------------------------------->
+<file name="$boarddir/Themes/core/Memberlist.template.php" error="skip">
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $scripturl, $txt]]></search>
+		<add><![CDATA[, $user_info;
+		
+	$tmp_mlist = 'mlist' . (isset($_REQUEST['sort']) ? ';sort=' . $_REQUEST['sort'] : '') . (isset($_REQUEST['start']) ? ';start=' . $_REQUEST['start'] : '');]]></add>
+	</operation>
+	<operation>
+		<search position="after"><![CDATA[</tr>
+			</thead>
+			<tbody>';
+
+	// Assuming there are members loop through each one displaying their data.]]></search>
+		<add><![CDATA[	<th scope="col" class="" width="25" />
+				]]></add>
+	</operation>
+	<operation>
+		<search position="after"><![CDATA[echo '
+				</tr>';
+		}
+	}
+	// No members?]]></search>
+		<add><![CDATA[// Can they add this member as a buddy?
+		if ($modSettings['qb_on_memberlist'] && $context['user']['is_logged'] && $member['id'] <> $context['user']['id'])
+		{
+			$is_buddy = in_array( ($id = $member['id']), $user_info['buddies']);
+			echo '
+					<td class="windowbg2" align="center"><a href="', $scripturl, '?action=buddy;u=', $member['id'], ';' . $tmp_mlist . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $member['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></td>';
+		}
+		else
+			echo '
+					<td class="windowbg2" />';
+
+		]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Board Index template change (backnblack_204/BoardIndex.template.php)   -->
+<!---------------------------------------------------------------------------->
+<file name="$boarddir/Themes/backnblack_204/BoardIndex.template.php" error="skip">
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $txt, $scripturl, $modSettings]]></search>
+		<add><![CDATA[, $user_info]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<td', !empty($board['children']) ? ' rowspan="2"' : '', ' class="windowbg2 smalltext lastpost">';]]></search>
+		<add><![CDATA[<td', !empty($board['children']) ? ' rowspan="2"' : '', ' class="windowbg2 smalltext lastpost">';
+
+				// Can they add this member as a buddy?
+				if ($modSettings['qb_on_boardindex'] && $context['user']['is_logged'] && $board['last_post']['member']['id'] <> 0 && $board['last_post']['member']['id'] <> $context['user']['id'])
+				{
+					$is_buddy = in_array( ($id = $board['last_post']['member']['id']), $user_info['buddies']);
+					echo '
+						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $board['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+				}]]></add>
+	</operation>
+</file>
+
+<!---------------------------------------------------------------------------->
+<!-- Memberlist template change (backnblack_204/Memberlist.template.php)  	-->
+<!---------------------------------------------------------------------------->
+<file name="$boarddir/Themes/backnblack_204/Display.template.php" error="skip">
+	<operation>
+		<search position="before"><![CDATA[function template_main()
+{
+	global $context, $settings, $options, $txt, $scripturl, $modSettings]]></search>
+		<add><![CDATA[, $user_info;
+		
+	$tmp_topic = 'topic=' . $context['current_topic'];]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<img src="' . $settings['images_url'] . '/im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '.gif" alt="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '" border="0" />' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+
+				echo ']]></search>
+		<add><![CDATA[<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<img src="' . $settings['images_url'] . '/im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '.gif" alt="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '" border="0" />' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+
+				// Can they add this member as a buddy?
+				if ($modSettings['qb_on_display'] && $context['user']['is_logged'] && $message['member']['id'] <> 0 && $message['member']['id'] <> $context['user']['id'])
+				{
+					$is_buddy = in_array( ($id = $message['member']['id']), $user_info['buddies']);
+					echo '
+										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></li>';
+				}
+				echo ']]></add>
+	</operation>
+</file>
+</modification>

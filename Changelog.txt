@@ -1,0 +1,19 @@
+v2.4 - April 6th, 2015
+o Updated for SMF 2.1 Beta 1.
+o Added some extra error checking to avoid undeclared errors.
+
+v2.3 - January 19th, 2015
+o License change to Simplified BSD.  No functionality change.
+
+v2.2 - November 23th, 2014
+o Fixed for undefined variable within Memberlist.template.php...
+
+v2.1 - September 17th, 2014
+o Added Brazilian Portuguese language files.  Thanks, DSystem!!!
+
+v2.0 - September 14th, 2014
+o Added options in the Modifications Settings to control where the quick buddy icon is shown.
+o Added support for the Back-n-Black theme.
+
+v1.0 - July 20th, 2014
+o Initial Release of the mod

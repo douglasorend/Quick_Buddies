@@ -144,6 +144,10 @@
 <!---------------------------------------------------------------------------->
 <file name="$themedir/Memberlist.template.php">
 	<operation>
+		<search position="replace"><![CDATA[global $context, $settings, $options, $scripturl, $txt, $user_info]]></search>
+		<add><![CDATA[global $context, $settings, $options, $scripturl, $txt, $user_info, $modSettings]]></add>
+	</operation>
+	<operation>
 		<search position="before"><![CDATA[function template_main()
 {
 	global $context, $settings, $options, $scripturl, $txt]]></search>

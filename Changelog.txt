@@ -1,3 +1,7 @@
+v2.8 - July 7th, 2017
+o Added support for SMF 2.1 Beta 3.
+o Removed support for SMF 2.1 Beta 2.
+
 v2.7 - September 1st, 2015
 o Made the mod work with the Dynamic Memberlist mod.
 o Fixed multiple issues of improper and/or code-breaking operations.

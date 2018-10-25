@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<name>Quick Buddies</name>
+	<id>Dougiefresh:Quick_Buddies</id>
+	<version>1.0</version>
+	<type>modification</type>
+
+	<install for="2.0 - 2.0.99">
+		<readme type="file" parsebbc="true">readme.txt</readme>
+		<modification>install.xml</modification>
+		<modification>language_english.xml</modification>
+		<modification>language_english-utf8.xml</modification>
+		<require-file name="add_buddy.png" destination="$imagesdir" />
+		<require-file name="del_buddy.png" destination="$imagesdir" />
+	</install>
+	<uninstall for="2.0 - 2.0.99">
+		<modification reverse="true">install.xml</modification>
+		<modification reverse="true">language_english.xml</modification>
+		<modification reverse="true">language_english-utf8.xml</modification>
+		<remove-file name="$imagesdir/add_buddy.png" />
+		<remove-file name="$imagesdir/del_buddy.png" />
+	</uninstall>
+</package-info>

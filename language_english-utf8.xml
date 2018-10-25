@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<name>Quick Buddies</name>
+<id>Dougiefresh:Quick_Buddies</id>
+<version>1.0</version>
+
+<!-------------------------------------------------------------------------->
+<!-- Language file edits                                                  -->
+<!-------------------------------------------------------------------------->
+<file name="$themedir/languages/Modifications.english-utf8.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['buddy_add'] = "Add '%s' To Buddy List";
+$txt['buddy_remove'] = "Remove '%s' From Buddy List";
+
+]]></add>
+	</operation>
+</file>
+</modification>

@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <name>Quick Buddies</name>
 <id>Dougiefresh:Quick_Buddies</id>
-<version>2.4</version>
+<version>2.5</version>
 
 <!---------------------------------------------------------------------------->
 <!-- Addition of settings for Quick Buddies (ManageSettings.php)			-->
@@ -144,8 +144,8 @@
 <!---------------------------------------------------------------------------->
 <file name="$themedir/Memberlist.template.php">
 	<operation>
-		<search position="replace"><![CDATA[global $context, $settings, $options, $scripturl, $txt, $user_info]]></search>
-		<add><![CDATA[global $context, $settings, $options, $scripturl, $txt, $user_info, $modSettings]]></add>
+		<search position="before"><![CDATA[global $context, $settings, $options, $scripturl, $txt]]></search>
+		<add><![CDATA[, $modSettings]]></add>
 	</operation>
 	<operation>
 		<search position="before"><![CDATA[function template_main()

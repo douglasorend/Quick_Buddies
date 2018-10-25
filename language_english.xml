@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <name>Quick Buddies</name>
 <id>Dougiefresh:Quick_Buddies</id>
-<version>1.0</version>
+<version>2.0</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Language file edits (English - Modifications)                        -->
@@ -14,6 +14,12 @@
 		<add><![CDATA[
 $txt['buddy_add'] = "Add '%s' To Buddy List";
 $txt['buddy_remove'] = "Remove '%s' From Buddy List";
+
+$txt['qb_on_messageindex'] = 'Add Quick Buddies on MessageIndex';
+$txt['qb_on_boardindex'] = 'Add Quick Buddies on BoardIndex';
+$txt['qb_on_display'] = 'Add Quick Buddies on Post Display';
+$txt['qb_on_memberlist'] = 'Add Quick Buddies on Memberlist';
+$txt['qb_on_followers'] = 'Add Quick Buddies on Followers';
 
 ]]></add>
 	</operation>

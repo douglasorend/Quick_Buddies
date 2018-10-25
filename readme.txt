@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]QUICK BUDDIES v2.5[/b][/size][/color]
+[center][color=red][size=16pt][b]QUICK BUDDIES v2.6[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=3900]Link to Mod[/url]
 [/center]
 [hr]
@@ -18,7 +18,7 @@ There are 5 switches under [b]Modifications Settings[/b] that control where in t
 o [url=http://www.simplemachines.org/community/index.php?topic=426109.msg3129052#msg3129052]Add Buddy Button On Post[/url]
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was tested on SMF 2.0.8, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported, so please don't ask.
+This mod was tested on SMF 2.0.8, but should work on SMF 2.1 Beta 2 and SMF 2.0 and up.  SMF 1.x is not and will not be supported, so please don't ask.
 
 The [url=http://custom.simplemachines.org/mods/index.php?mod=3894]Followers v1.2+[/url] mod must be installed prior to installing this mod in order to add the ability to the Followers page.
 

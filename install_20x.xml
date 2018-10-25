@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <name>Quick Buddies</name>
 <id>Dougiefresh:Quick_Buddies</id>
-<version>2.5</version>
+<version>2.6</version>
 
 <!---------------------------------------------------------------------------->
 <!-- Addition of settings for Quick Buddies (ManageSettings.php)			-->
@@ -79,7 +79,7 @@
 				{
 					$is_buddy = in_array( ($id = $board['last_post']['member']['id']), $user_info['buddies']);
 					echo '
-						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $board['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $board['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a>';
 				}]]></add>
 	</operation>
 </file>
@@ -103,7 +103,7 @@
 			{
 				$is_buddy = in_array( ($id = $topic['last_post']['member']['id']), $user_info['buddies']);
 				echo '
-						<a href="', $scripturl, '?action=buddy;u=', $topic['last_post']['member']['id'], ';board=' . $tmp_board . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $topic['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+						<a href="', $scripturl, '?action=buddy;u=', $topic['last_post']['member']['id'], ';board=' . $tmp_board . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $topic['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a>';
 			}
 			
 			echo ']]></add>
@@ -133,7 +133,7 @@
 				{
 					$is_buddy = in_array( ($id = $message['member']['id']), $user_info['buddies']);
 					echo '
-										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></li>';
+										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a></li>';
 				}
 				echo ']]></add>
 	</operation>
@@ -166,7 +166,7 @@
 		{
 			$is_buddy = in_array( ($id = $member['id']), $user_info['buddies']);
 			echo '
-					<td class="windowbg2"><a href="', $scripturl, '?action=buddy;u=', $member['id'], ';' . $tmp_mlist . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $member['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></td>';
+					<td class="windowbg2"><a href="', $scripturl, '?action=buddy;u=', $member['id'], ';' . $tmp_mlist . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $member['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a></td>';
 		}
 		else
 			echo '
@@ -202,7 +202,7 @@
 		{
 			$is_buddy = in_array( ($id = $member['id']), $user_info['buddies']);
 			echo '
-					<td align="center"><a href="', $scripturl, '?action=buddy;u=', $follower['id'], ';follow;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $follower['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></td>';
+					<td align="center"><a href="', $scripturl, '?action=buddy;u=', $follower['id'], ';follow;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $follower['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a></td>';
 		}
 		else
 			echo '
@@ -230,7 +230,7 @@
 				{
 					$is_buddy = in_array( ($id = $board['last_post']['member']['id']), $user_info['buddies']);
 					echo '
-						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $topic['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $topic['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a>';
 				}]]></add>
 	</operation>
 </file>
@@ -258,7 +258,7 @@
 				{
 					$is_buddy = in_array( ($id = $message['member']['id']), $user_info['buddies']);
 					echo '
-										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></li>';
+										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a></li>';
 				}
 				echo ']]></add>
 	</operation>
@@ -296,7 +296,7 @@
 		{
 			$is_buddy = in_array( ($id = $member['id']), $user_info['buddies']);
 			echo '
-					<td class="windowbg2" align="center"><a href="', $scripturl, '?action=buddy;u=', $member['id'], ';' . $tmp_mlist . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $member['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></td>';
+					<td class="windowbg2" align="center"><a href="', $scripturl, '?action=buddy;u=', $member['id'], ';' . $tmp_mlist . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $member['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a></td>';
 		}
 		else
 			echo '
@@ -325,7 +325,7 @@
 				{
 					$is_buddy = in_array( ($id = $board['last_post']['member']['id']), $user_info['buddies']);
 					echo '
-						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $board['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a>';
+						<a href="', $scripturl, '?action=buddy;u=', $board['last_post']['member']['id'], ';forum;', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $board['last_post']['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a>';
 				}]]></add>
 	</operation>
 </file>
@@ -353,7 +353,7 @@
 				{
 					$is_buddy = in_array( ($id = $message['member']['id']), $user_info['buddies']);
 					echo '
-										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" /></a></li>';
+										<li><a href="', $scripturl, '?action=buddy;u=', $message['member']['id'], ';' . $tmp_topic . ';msg=' . $message['id'] . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['images_url'], '/', ($is_buddy ? 'del' : 'add'), '_buddy.png" title="', str_replace('%s', $message['member']['name'], $txt['buddy_' . ($is_buddy ? 'remove' : 'add')]), '" alt="'. ($is_buddy ? '-' : '+') . '"/></a></li>';
 				}
 				echo ']]></add>
 	</operation>

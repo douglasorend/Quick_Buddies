@@ -3,8 +3,8 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<name>Quick Buddies</name>
 	<id>Dougiefresh:Quick_Buddies</id>
-	<version>2.5</version>
 	<type>modification</type>
+	<version>2.6</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
@@ -27,7 +27,7 @@
 		<remove-file name="$imagesdir/del_buddy.png" />
 	</uninstall>
 
-	<install for="2.1 Beta 1">
+	<install for="2.1 Beta 2">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>edit_db.php</code>
 		<modification>install_21x.xml</modification>
@@ -38,7 +38,7 @@
 		<require-file name="add_buddy.png" destination="$imagesdir" />
 		<require-file name="del_buddy.png" destination="$imagesdir" />
 	</install>
-	<uninstall for="2.1 Beta 1">
+	<uninstall for="2.1 Beta 2">
 		<modification reverse="true">install_21x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
 		<modification reverse="true">language_english-utf8.xml</modification>

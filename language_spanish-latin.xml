@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<name>Quick Buddies</name>
+<id>Dougiefresh:Quick_Buddies</id>
+<version>2.9</version>
+
+<!-------------------------------------------------------------------------->
+<!-- Language file edits (Spanish Latin - Rock Lee)                       -->
+<!-------------------------------------------------------------------------->
+<file name="$themedir/languages/Modifications.spanish_latin.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['buddy_add'] = "Agregar '%s' a la lista de amigos";
+$txt['buddy_remove'] = "Eliminar '%s' de la lista de amigos";
+$txt['qb_on_messageindex'] = 'Agregar amigos r&aacute;pidos en el &iacute;ndice de mensajes';
+$txt['qb_on_boardindex'] = 'Agregar amigos r&aacute;pidos en el &iacute;ndice general';
+$txt['qb_on_display'] = 'Agregar amigos r&aacute;pidos en la pantalla de publicaci&oacute;n';
+$txt['qb_on_memberlist'] = 'Agregar amigos r&aacute;pidos en la lista de miembros';
+$txt['qb_on_followers'] = 'Agregar amigos r&aacute;pidos sobre los seguidores';
+]]></add>
+	</operation>
+</file>
+
+<file name="$themedir/languages/Modifications.spanish_latin-utf8.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['buddy_add'] = "Agregar '%s' a la lista de amigos";
+$txt['buddy_remove'] = "Eliminar '%s' de la lista de amigos";
+$txt['qb_on_messageindex'] = 'Agregar amigos rápidos en el índice de mensajes';
+$txt['qb_on_boardindex'] = 'Agregar amigos rápidos en el índice general';
+$txt['qb_on_display'] = 'Agregar amigos rápidos en la pantalla de publicación';
+$txt['qb_on_memberlist'] = 'Agregar amigos rápidos en la lista de miembros';
+$txt['qb_on_followers'] = 'Agregar amigos rápidos sobre los seguidores';
+]]></add>
+	</operation>
+</file>
+</modification>
